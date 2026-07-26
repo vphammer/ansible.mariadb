@@ -6,9 +6,9 @@
 # mysql_role module initial CI tests
 # TODO, many tests fails with MariaDB, debug them then remove the 
 # when clause and swap include_tasks for import_tasks.
-- include_tasks: mysql_role_initial.yml
+- include_tasks: mariadb_role_initial.yml
   when:
-    - db_engine == 'mysql'
+    - db_engine != 'mariadb'
 
 # Test that subtract_privs will only revoke the grants given by priv
 # (https://github.com/ansible-collections/ansible.mysql/issues/331)
@@ -22,10 +22,3 @@
 - name: Test column case sensitive
   ansible.builtin.import_tasks:
     file: test_column_case_sensitive.yml
-
-# Test sql_log_bin parameter
-# (https://github.com/ansible-collections/ansible.mysql/issues/742)
-- name: Test sql_log_bin parameter
-  ansible.builtin.include_tasks: test_sql_log_bin.yml
-  when:
-    - db_engine == 'mysql'

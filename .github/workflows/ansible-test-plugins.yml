@@ -118,7 +118,7 @@ jobs:
 
       # No need to check for service health. GitHub Action took care of it.
 
-      - name: Restart MySQL server with settings for replication
+      - name: Restart MariaDB server with settings for replication
         run: |
           db_ver="${{ matrix.db_engine_version }}"
           maj="${db_ver%.*.*}"

@@ -54,6 +54,7 @@
           is not search("DD", ignorecase=false)
 
     - name: MariaDB_user Column case sensitive | Assert 4 column are accessible
+      ansible.mariadb.mariadb_query:
         <<: *mariadb_params
         login_user: column_case_sensitive
         query:

@@ -24,6 +24,12 @@
         registred_db_version:
           "{{ primary_info.version.major }}.{{ primary_info.version.minor }}\
           .{{ primary_info.version.release }}"
+  
+    - name: Assert that mariadb_info module used the expected version of pymysql
+      assert:
+        that:
+          - primary_info.connector_name == connector_name
+          - primary_info.connector_version == connector_version
 
     - name: Get the python version in use
       ansible.builtin.shell:
